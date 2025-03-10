@@ -3,3 +3,5 @@ pydantic
 beautifulsoup4
 requests
 uvicorn
+fake-useragent
+lxml

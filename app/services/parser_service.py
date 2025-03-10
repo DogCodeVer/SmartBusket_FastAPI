@@ -1,21 +1,37 @@
 import requests
 from bs4 import BeautifulSoup
 
-URL = "https://magnit.ru/catalog"
+def parse_products(shop_code='963529'):
+    url = "https://magnit.ru/catalog"
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    }
+    cookies = {'shopCode': shop_code}
 
-def parse_products():
-    response = requests.get(URL)
-    if response.status_code != 200:
-        print("Ошибка при запросе:", response.status_code)
-        return []
+    response = requests.get(url, headers=headers, cookies=cookies)
+    soup = BeautifulSoup(response.content.decode("utf-8"), "lxml")
 
-    soup = BeautifulSoup(response.text, "html.parser")
+    # Найти карточки товаров
+    cards = soup.find_all('article', class_='unit-catalog-product-preview show-ratings')
+
+    # Список для хранения результатов
     products = []
 
-    for item in soup.select(".product-item"):
-        name = item.select_one(".product-title").text
-        price = item.select_one(".product-price").text
-        products.append({"name": name, "price": price})
+    for card in cards:
+        try:
+            title = card.find('span', class_='product-title').text.strip()
+            price = card.find('span', class_='price').text.strip()
+            image_url = card.find('img', class_='product-image')['src']
+            link = "https://magnit.ru" + card.find('a', class_='product-link')['href']
 
-    print("Спарсено товаров:", len(products))
+            products.append({
+                "title": title,
+                "price": price,
+                "image_url": image_url,
+                "link": link
+            })
+        except Exception as e:
+            print(f"Ошибка парсинга карточки: {e}")
+
     return products

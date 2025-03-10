@@ -1,9 +1,21 @@
-from fastapi import APIRouter, BackgroundTasks
+from fastapi import APIRouter, HTTPException
 from app.services.parser_service import parse_products
+import logging
 
 router = APIRouter(prefix="/parser", tags=["Parser"])
 
-@router.post("/start")
-async def start_parsing(background_tasks: BackgroundTasks):
-    background_tasks.add_task(parse_products)
-    return {"message": "Парсинг запущен"}
+# Настраиваем логирование
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+@router.get("/start")
+async def start_parsing():
+    try:
+        logger.info("Запуск парсинга...")
+        products = parse_products()  # Синхронный вызов
+        if not products:
+            raise HTTPException(status_code=404, detail="Товары не найдены")
+        return {"message": "Парсинг завершён", "products": products}
+    except Exception as e:
+        logger.error(f"Ошибка при парсинге: {e}")
+        raise HTTPException(status_code=500, detail=f"Ошибка парсинга: {str(e)}")
