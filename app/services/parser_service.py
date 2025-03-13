@@ -65,3 +65,35 @@ def parse_products(shop_code='963529', max_pages=50):
             break
 
     return products
+
+
+def fetch_category():
+    url = "https://5d.5ka.ru/api/catalog/v2/stores/Y232/categories"
+    params = {
+        "mode": "delivery",
+        "include_subcategories": "1",
+        "include_restrict": "true"
+    }
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+        "Accept": "application/json, text/plain, */*",
+        "Origin": "https://5ka.ru",
+        "X-App-Version": "tc5-v250312-31214353",
+        "X-Device-Id": "f7261964-c7fa-4b75-94ee-693aa9a896e2",
+        "X-Platform": "webapp",
+    }
+
+    response = requests.get(url, headers=headers, params=params)
+
+    if response.status_code == 200:
+        data = response.json()
+
+        # Фильтруем категории, исключая "Пятёрочка выручает!" и "Готовая еда"
+        excluded_categories = ["Пятёрочка выручает!", "Готовая еда"]
+        filtered_categories = [
+            category for category in data
+            if category["name"] not in excluded_categories
+        ]
+
+
+    return filtered_categories
