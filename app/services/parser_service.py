@@ -97,3 +97,53 @@ def fetch_category():
 
 
     return filtered_categories
+
+import requests
+
+def get_products(category_id: str):
+    url = f"https://5d.5ka.ru/api/catalog/v2/stores/Y232/categories/{category_id}/products"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+        "Accept": "application/json, text/plain, */*",
+        "Origin": "https://5ka.ru",
+        "X-App-Version": "tc5-v250312-31214353",
+        "X-Device-Id": "50123270-28fc-412d-9f50-66dc2316be61",
+        "X-Platform": "webapp",
+    }
+
+    all_products = []  # Список для хранения всех товаров
+    offset = 0  # Начинаем с 0
+    limit = 20  # Можно увеличить, например, 50
+
+    while True:
+        # Формируем URL с параметрами
+        params = {
+            "mode": "delivery",
+            "include_restrict": "true",
+            "limit": limit,
+            "offset": offset,
+        }
+
+        # Делаем запрос
+        response = requests.get(url, headers=headers, params=params)
+
+        # Проверяем, что запрос прошел успешно
+        if response.status_code == 200:
+            data = response.json()
+
+            # Добавляем товары в список
+            all_products.extend(data.get("products", []))
+
+            # Если товаров меньше, чем лимит, значит это последняя страница
+            if len(data.get("products", [])) < limit:
+                break
+
+            # Увеличиваем offset для следующей страницы
+            offset += limit
+        else:
+            print(f"Ошибка запроса: {response.status_code}")
+            break
+
+    return all_products
+
+

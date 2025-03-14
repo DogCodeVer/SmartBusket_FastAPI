@@ -31,3 +31,14 @@ async def get_category():
     except Exception as e:
         logger.error(f"Ошибка при получение категорий: {e}")
         raise HTTPException(status_code=500, detail=f"Ошибка парсинга: {str(e)}")
+
+@router.get("/get_product/{category_id}")
+async def fetch_products(category_id: str):
+    try:
+        logger.info("Получение товаров")
+        products = get_products(category_id)
+        if not products:
+            raise HTTPException(status_code=404, detail="Products not found")
+        return products
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
