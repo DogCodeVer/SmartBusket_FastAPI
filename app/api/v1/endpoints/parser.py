@@ -11,8 +11,8 @@ logger = logging.getLogger(__name__)
 @router.get("/start")
 async def start_parsing():
     try:
-        logger.info("Запуск парсинга...")
-        products = parse_products()  # Синхронный вызов
+        logger.info("Запуск парсинга магнита")
+        products = parse_products_magnit()  # Синхронный вызов
         if not products:
             raise HTTPException(status_code=404, detail="Товары не найдены")
         return {"message": "Парсинг завершён", "products": products}
@@ -51,6 +51,17 @@ async def fetch_product_info(product_id: str):
         if not product_info:
             raise HTTPException(status_code=404, detail="Product not found")
         return product_info
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
+
+@router.get("/get_category/get_sub_categories/{category_id}")
+async def fetch_sub_categories(category_id: str):
+    try:
+        logger.info("Получения подкатегорий")
+        subcatregoies = parse_product_subcategories(category_id)
+        if not subcatregoies:
+            raise HTTPException(status_code=404, detail="Products not found")
+        return subcatregoies
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
 

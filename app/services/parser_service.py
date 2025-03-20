@@ -1,10 +1,12 @@
 import re
+
 import requests
 from bs4 import BeautifulSoup
 
 pattern = r"(\d+([.,]\d+)?)\s?(г|кг|л|мл|gr|kg|ml)\b"
 
-def parse_products(shop_code='963529', max_pages=50):
+
+def parse_products_magnit(shop_code='963529', max_pages=50):
     base_url = "https://magnit.ru/catalog"
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36',
@@ -96,8 +98,8 @@ def parse_category():
             if category["name"] not in excluded_categories
         ]
 
-
     return filtered_categories
+
 
 def parse_products_list(category_id: str):
     url = f"https://5d.5ka.ru/api/catalog/v2/stores/Y232/categories/{category_id}/products"
@@ -145,6 +147,7 @@ def parse_products_list(category_id: str):
 
     return all_products
 
+
 def parse_product_info(product_id: str):
     url = f"https://5d.5ka.ru/api/catalog/v2/stores/Y232/products/{product_id}"
     headers = {
@@ -169,3 +172,36 @@ def parse_product_info(product_id: str):
         print(f"Ошибка запроса: {response.status_code}")
 
     return product_info
+
+
+def parse_product_subcategories(category_id: str):
+    url = f'https://5d.5ka.ru/api/catalog/v2/stores/Y232/categories/{category_id}/extended'
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+        "Accept": "application/json, text/plain, */*",
+        "Origin": "https://5ka.ru",
+        "X-App-Version": "tc5-v250312-31214353",
+        "X-Device-Id": "50123270-28fc-412d-9f50-66dc2316be61",
+        "X-Platform": "webapp",
+    }
+    params = {
+        "mode": "delivery",
+        "include_restrict": "true",
+    }
+
+    subcategories = []
+
+    response = requests.get(url, headers=headers, params=params)
+
+    print(response.json())
+
+    if response.status_code == 200:
+        data = response.json()
+        subcategories = data
+
+
+    else:
+        print(f"Ошибка запроса: {response.status_code}")
+
+    return subcategories
+
