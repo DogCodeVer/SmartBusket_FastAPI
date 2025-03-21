@@ -93,10 +93,22 @@ def parse_category():
 
         # Фильтруем категории, исключая "Пятёрочка выручает!" и "Готовая еда"
         excluded_categories = ["Пятёрочка выручает!", "Готовая еда"]
-        filtered_categories = [
-            category for category in data
-            if category["name"] not in excluded_categories
-        ]
+        filtered_categories = []
+
+        for category in data:
+            if category["name"] in excluded_categories:
+                continue
+
+            # Фильтруем субкатегории, исключая те, у которых advert не пустой
+            filtered_subcategories = [
+                subcat for subcat in category.get("categories", [])
+                if not subcat.get("advert")
+            ]
+
+            # Если после фильтрации остались субкатегории, добавляем категорию
+            if filtered_subcategories:
+                category["categories"] = filtered_subcategories
+                filtered_categories.append(category)
 
     return filtered_categories
 
@@ -204,4 +216,3 @@ def parse_product_subcategories(category_id: str):
         print(f"Ошибка запроса: {response.status_code}")
 
     return subcategories
-
