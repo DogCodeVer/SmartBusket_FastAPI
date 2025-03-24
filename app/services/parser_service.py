@@ -113,6 +113,8 @@ def parse_category():
     return filtered_categories
 
 
+import requests
+
 def parse_products_list(category_id: str):
     url = f"https://5d.5ka.ru/api/catalog/v2/stores/Y232/categories/{category_id}/products"
     headers = {
@@ -124,12 +126,12 @@ def parse_products_list(category_id: str):
         "X-Platform": "webapp",
     }
 
-    all_products = []  # Список для хранения всех товаров
-    offset = 0  # Начинаем с 0
-    limit = 20  # Можно увеличить, например, 50
+    filtered_products = []  # Список для хранения отфильтрованных товаров
+    offset = 0
+    limit = 20
+    exclude_brands = ["Global Village", "Красная цена"]  # Список брендов, которые нужно исключить
 
     while True:
-        # Формируем URL с параметрами
         params = {
             "mode": "delivery",
             "include_restrict": "true",
@@ -137,27 +139,26 @@ def parse_products_list(category_id: str):
             "offset": offset,
         }
 
-        # Делаем запрос
         response = requests.get(url, headers=headers, params=params)
 
-        # Проверяем, что запрос прошел успешно
         if response.status_code == 200:
             data = response.json()
+            products = data.get("products", [])
 
-            # Добавляем товары в список
-            all_products.extend(data.get("products", []))
+            # Исключаем товары с указанными брендами
+            for product in products:
+                if not any(brand.lower() in product.get("name", "").lower() for brand in exclude_brands):
+                    filtered_products.append(product)
 
-            # Если товаров меньше, чем лимит, значит это последняя страница
-            if len(data.get("products", [])) < limit:
+            if len(products) < limit:
                 break
 
-            # Увеличиваем offset для следующей страницы
             offset += limit
         else:
             print(f"Ошибка запроса: {response.status_code}")
             break
 
-    return all_products
+    return filtered_products
 
 
 def parse_product_info(product_id: str):
