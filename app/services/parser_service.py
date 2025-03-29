@@ -113,8 +113,6 @@ def parse_category():
     return filtered_categories
 
 
-import requests
-
 def parse_products_list(category_id: str):
     url = f"https://5d.5ka.ru/api/catalog/v2/stores/Y232/categories/{category_id}/products"
     headers = {
@@ -217,3 +215,8 @@ def parse_product_subcategories(category_id: str):
         print(f"Ошибка запроса: {response.status_code}")
 
     return subcategories
+
+
+def search_products(search_term: str):
+    url = f'https://5d.5ka.ru/api/catalog/v3/stores/35V7/search'
+    headers ={}
