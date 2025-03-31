@@ -4,6 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 
 pattern = r"(\d+([.,]\d+)?)\s?(г|кг|л|мл|gr|kg|ml)\b"
+exclude_brands = ["Global Village", "Красная цена"]
 
 
 def parse_products_magnit(shop_code='963529', max_pages=50):
@@ -127,7 +128,7 @@ def parse_products_list(category_id: str):
     filtered_products = []  # Список для хранения отфильтрованных товаров
     offset = 0
     limit = 20
-    exclude_brands = ["Global Village", "Красная цена"]  # Список брендов, которые нужно исключить
+      # Список брендов, которые нужно исключить
 
     while True:
         params = {
@@ -219,4 +220,37 @@ def parse_product_subcategories(category_id: str):
 
 def search_products(search_term: str):
     url = f'https://5d.5ka.ru/api/catalog/v3/stores/35V7/search'
-    headers ={}
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+        "Accept": "application/json, text/plain, */*",
+        "Origin": "https://5ka.ru",
+        "X-App-Version": "tc5-v250312-31214353",
+        "X-Device-Id": "50123270-28fc-412d-9f50-66dc2316be61",
+        "X-Platform": "webapp",
+    }
+
+    filtered_products = []  # Список для хранения отфильтрованных товаров
+    offset = 0
+    limit = 20
+    params = {
+        "mode": "delivery",
+        "include_restrict": "true",
+        "limit": limit,
+        "offset": offset,
+        "q": search_term,
+    }
+
+    response = requests.get(url, headers=headers, params=params)
+
+    if response.status_code == 200:
+        data = response.json()
+        products = data.get("products", [])
+
+        # Исключаем товары с указанными брендами
+        for product in products:
+            if not any(brand.lower() in product.get("name", "").lower() for brand in exclude_brands):
+                filtered_products.append(product)
+    else:
+        print(f"Ошибка запроса: {response.status_code}")
+
+    return filtered_products

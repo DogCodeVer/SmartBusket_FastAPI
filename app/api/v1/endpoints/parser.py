@@ -65,3 +65,14 @@ async def fetch_sub_categories(category_id: str):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
 
+@router.get("/search/{search_term}")
+async def fetch_search_product(search_term: str):
+    try:
+        logger.error(f'Ищем: {search_term}')
+        search_result = search_products(search_term)
+        if not search_result:
+            raise HTTPException(status_code=200, detail="Product not found")
+        return search_result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
+
