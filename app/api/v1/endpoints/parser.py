@@ -8,7 +8,7 @@ router = APIRouter(prefix="/parser", tags=["Parser"])
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-@router.get("/start")
+@router.get("/test_magnit")
 async def start_parsing():
     try:
         logger.info("Запуск парсинга магнита")

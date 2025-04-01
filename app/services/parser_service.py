@@ -70,6 +70,16 @@ def parse_products_magnit(shop_code='963529', max_pages=50):
     return products
 
 
+def parse_product_lenta():
+    base_url = "https://lenta.com/api-gateway/v1/catalog/items"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+        "Accept": "application/json, text/plain, */*",
+        "Origin": "https://lenta.com",
+
+    }
+
+
 def parse_category():
     global filtered_categories
     url = "https://5d.5ka.ru/api/catalog/v2/stores/Y232/categories"
@@ -128,7 +138,7 @@ def parse_products_list(category_id: str):
     filtered_products = []  # Список для хранения отфильтрованных товаров
     offset = 0
     limit = 20
-      # Список брендов, которые нужно исключить
+    # Список брендов, которые нужно исключить
 
     while True:
         params = {
