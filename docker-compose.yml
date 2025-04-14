@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   web:
-    image: your_dockerhub_username/smartbusket:latest # укажи свой образ
+    image: dogver/smartbusket:latest # укажи свой образ
     container_name: fastapi_parser
     ports:
       - '8000:8000'
