@@ -82,7 +82,7 @@ def parse_product_lenta():
 
 def parse_category():
     global filtered_categories
-    url = "https://5d.5ka.ru/api/catalog/v2/stores/Y232/categories"
+    url = "https://5d.5ka.ru/api/catalog/v2/stores/35V7/categories"
     params = {
         "mode": "delivery",
         "include_subcategories": "1",
@@ -125,7 +125,7 @@ def parse_category():
 
 
 def parse_products_list(category_id: str):
-    url = f"https://5d.5ka.ru/api/catalog/v2/stores/Y232/categories/{category_id}/products"
+    url = f"https://5d.5ka.ru/api/catalog/v2/stores/35V7/categories/{category_id}/products"
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
         "Accept": "application/json, text/plain, */*",
@@ -171,7 +171,7 @@ def parse_products_list(category_id: str):
 
 
 def parse_product_info(product_id: str):
-    url = f"https://5d.5ka.ru/api/catalog/v2/stores/Y232/products/{product_id}"
+    url = f"https://5d.5ka.ru/api/catalog/v2/stores/35V7/products/{product_id}"
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
         "Accept": "application/json, text/plain, */*",
@@ -197,7 +197,7 @@ def parse_product_info(product_id: str):
 
 
 def parse_product_subcategories(category_id: str):
-    url = f'https://5d.5ka.ru/api/catalog/v2/stores/Y232/categories/{category_id}/extended'
+    url = f'https://5d.5ka.ru/api/catalog/v2/stores/35V7/categories/{category_id}/extended'
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
         "Accept": "application/json, text/plain, */*",
