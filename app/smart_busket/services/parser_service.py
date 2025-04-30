@@ -44,14 +44,11 @@ def parse_products_magnit(shop_code='963529', max_pages=50):
                 value_tag = card.find('span', class_='pl-text unit-catalog-product-preview-unit-value')
                 value = value_tag.text.strip() if value_tag else None
 
-                # Ищем граммовку в названии
                 match = re.search(pattern, title, flags=re.IGNORECASE)
                 extracted_value = f"{match.group(1)} {match.group(3)}" if match else None
 
-                # Если value пустой, берем из названия
                 final_value = value if value else extracted_value
 
-                # Убираем граммовку из названия
                 clean_title = re.sub(pattern, "", title, flags=re.IGNORECASE).strip()
 
                 products.append({
@@ -80,8 +77,9 @@ def parse_product_lenta():
     }
 
 
+import requests
+
 def parse_category():
-    global filtered_categories
     url = "https://5d.5ka.ru/api/catalog/v2/stores/35V7/categories"
     params = {
         "mode": "delivery",
@@ -89,7 +87,7 @@ def parse_category():
         "include_restrict": "true"
     }
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+        "User-Agent": "Mozilla/5.0 (Linux; U; Linux i674 ) Gecko/20130401 Firefox/62.8",
         "Accept": "application/json, text/plain, */*",
         "Origin": "https://5ka.ru",
         "X-App-Version": "tc5-v250312-31214353",
@@ -97,37 +95,40 @@ def parse_category():
         "X-Platform": "webapp",
     }
 
-    response = requests.get(url, headers=headers, params=params)
+    filtered_categories = []
 
-    if response.status_code == 200:
-        data = response.json()
+    try:
+        response = requests.get(url, headers=headers, params=params)
+        print(response.text)
+        if response.status_code == 200:
+            data = response.json()
 
-        # Фильтруем категории, исключая "Пятёрочка выручает!" и "Готовая еда"
-        excluded_categories = ["Пятёрочка выручает!", "Готовая еда"]
-        filtered_categories = []
+            excluded_categories = ["Пятёрочка выручает!", "Готовая еда"]
 
-        for category in data:
-            if category["name"] in excluded_categories:
-                continue
+            for category in data:
+                if category["name"] in excluded_categories:
+                    continue
 
-            # Фильтруем субкатегории, исключая те, у которых advert не пустой
-            filtered_subcategories = [
-                subcat for subcat in category.get("categories", [])
-                if not subcat.get("advert")
-            ]
+                filtered_subcategories = [
+                    subcat for subcat in category.get("categories", [])
+                    if not subcat.get("advert")
+                ]
 
-            # Если после фильтрации остались субкатегории, добавляем категорию
-            if filtered_subcategories:
-                category["categories"] = filtered_subcategories
-                filtered_categories.append(category)
+                if filtered_subcategories:
+                    category["categories"] = filtered_subcategories
+                    filtered_categories.append(category)
+
+    except Exception as e:
+        print(f"Ошибка при получение категорий: {e}")
 
     return filtered_categories
+
 
 
 def parse_products_list(category_id: str):
     url = f"https://5d.5ka.ru/api/catalog/v2/stores/35V7/categories/{category_id}/products"
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+        "User-Agent": "Mozilla/5.0 (Linux; U; Linux i674 ) Gecko/20130401 Firefox/62.8",
         "Accept": "application/json, text/plain, */*",
         "Origin": "https://5ka.ru",
         "X-App-Version": "tc5-v250312-31214353",
@@ -173,7 +174,7 @@ def parse_products_list(category_id: str):
 def parse_product_info(product_id: str):
     url = f"https://5d.5ka.ru/api/catalog/v2/stores/35V7/products/{product_id}"
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+        "User-Agent": "Mozilla/5.0 (Linux; U; Linux i674 ) Gecko/20130401 Firefox/62.8",
         "Accept": "application/json, text/plain, */*",
         "Origin": "https://5ka.ru",
         "X-App-Version": "tc5-v250312-31214353",
@@ -199,7 +200,7 @@ def parse_product_info(product_id: str):
 def parse_product_subcategories(category_id: str):
     url = f'https://5d.5ka.ru/api/catalog/v2/stores/35V7/categories/{category_id}/extended'
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+        "User-Agent": "Mozilla/5.0 (Linux; U; Linux i674 ) Gecko/20130401 Firefox/62.8",
         "Accept": "application/json, text/plain, */*",
         "Origin": "https://5ka.ru",
         "X-App-Version": "tc5-v250312-31214353",
@@ -231,7 +232,7 @@ def parse_product_subcategories(category_id: str):
 def search_products(search_term: str):
     url = f'https://5d.5ka.ru/api/catalog/v3/stores/35V7/search'
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+        "User-Agent": "Mozilla/5.0 (Linux; U; Linux i674 ) Gecko/20130401 Firefox/62.8",
         "Accept": "application/json, text/plain, */*",
         "Origin": "https://5ka.ru",
         "X-App-Version": "tc5-v250312-31214353",

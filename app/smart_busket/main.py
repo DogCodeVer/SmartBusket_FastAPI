@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api.v1.endpoints import parser
+from app.smart_busket.api import parser
 
 app = FastAPI(title="Food Product Parser")
 

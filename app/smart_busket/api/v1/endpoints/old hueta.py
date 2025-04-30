@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from app.services.parser_service import *
+from app.smart_busket.services.parser_service import *
 import logging
 
 router = APIRouter(prefix="/parser", tags=["Parser"])

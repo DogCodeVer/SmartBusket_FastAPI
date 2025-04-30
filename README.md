@@ -24,7 +24,7 @@
 
 3. **Запуск сервера FastAPI:**
    ```sh
-   uvicorn app.main:app --host 192.168.1.72 --port 8000
+   uvicorn app.main:app --host 0.0.0.0 --port 8000
    ```
 
 ## Проверка работы
