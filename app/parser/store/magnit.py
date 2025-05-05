@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 from requests import Session
 
-from db.pw_model import Product
+from db.pd_model import Product
 from store.stocks_info import Stock
 
 INCLUDE_IDS = {'58685', '61481', '60269', '47161', '4435', '48463', '48465', '40293'}

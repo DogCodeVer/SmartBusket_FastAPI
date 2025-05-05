@@ -1,7 +1,7 @@
 import time
 from fake_useragent import UserAgent
 
-from db.pw_model import Product
+from db.pd_model import Product
 from requests import Session
 from store.stocks_info import Stock
 
