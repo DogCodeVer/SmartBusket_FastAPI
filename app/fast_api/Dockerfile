@@ -12,7 +12,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY ./app/fast_api ./app/fast_api
 
 # Устанавливаем рабочую директорию для FastAPI
-WORKDIR /app/fast_api
+WORKDIR /app
 
 # Указываем команду для запуска FastAPI
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

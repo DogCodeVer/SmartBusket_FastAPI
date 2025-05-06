@@ -7,16 +7,17 @@ from sqlalchemy import pool
 
 from alembic import context
 
-BASE_DIR = Path(__file__).resolve().parents[1]
+BASE_DIR = Path(__file__).resolve().parents[2]
 sys.path.append(str(BASE_DIR))
 
 print(f"sys.path: {BASE_DIR}")
 
 
-from models import models
+from app.db.database import Base
+from app.db import models
 
 
-target_metadata = models.Base.metadata
+target_metadata = Base.metadata
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

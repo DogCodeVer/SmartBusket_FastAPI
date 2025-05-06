@@ -12,7 +12,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY ./app/parser ./app/parser
 
 # Устанавливаем рабочую директорию для Parser
-WORKDIR /app/parser
+WORKDIR /app
 
 # Указываем команду для запуска парсера
 CMD ["python", "main.py"]
