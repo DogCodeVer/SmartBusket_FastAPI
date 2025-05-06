@@ -1,38 +1,62 @@
-version: "3.9"
+version: '3.8'
 
 services:
-  db:
-    image: postgres:17
-    container_name: pgdb
-    restart: always
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: mydatabase
-    ports:
-      - "5432:5432"
+  alembic:
+    build:
+      context: .
+      dockerfile: ./app/alembic/Dockerfile
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - ./app/alembic:/app/alembic
+      - ./wait-for-it.sh:/app/wait-for-it.sh
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=smart_bucket
+    command: ["alembic", "upgrade", "head"]
+
+  fastapi:
+    build:
+      context: .
+      dockerfile: ./app/fast_api/Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=smart_bucket
 
   parser:
     build:
       context: .
-      dockerfile: Dockerfile.parser
+      dockerfile: ./app/parser/Dockerfile
     depends_on:
       - db
     environment:
-      DB_URL: postgresql+asyncpg://postgres:postgres@db:5432/smart
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=smart_bucket
+      - PYTHONPATH=/app
 
-  api:
-    build:
-      context: .
-      dockerfile: Dockerfile.api
-    depends_on:
-      - db
-    ports:
-      - "8000:8000"
+  db:
+    image: postgres:15
     environment:
-      DB_URL: postgresql+asyncpg://user:password@db:5432/mydatabase
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: smart_bucket
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
 
 volumes:
-  postgres_data:
+  db_data:

@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.smart_busket.api import parser
+from api.v1.endpoints.oldhueta import router
 
 app = FastAPI(title="Food Product Parser")
 
@@ -14,4 +14,4 @@ app.add_middleware(
 )
 
 # Подключаем роутеры
-app.include_router(parser.router)
+app.include_router(router)

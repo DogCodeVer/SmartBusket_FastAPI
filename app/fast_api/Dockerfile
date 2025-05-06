@@ -9,10 +9,10 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Копируем все файлы в контейнер
-COPY ./app/parser ./app/parser
+COPY ./app/fast_api ./app/fast_api
 
-# Устанавливаем рабочую директорию для Parser
-WORKDIR /app/parser
+# Устанавливаем рабочую директорию для FastAPI
+WORKDIR /app/fast_api
 
-# Указываем команду для запуска парсера
-CMD ["python", "main.py"]
+# Указываем команду для запуска FastAPI
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

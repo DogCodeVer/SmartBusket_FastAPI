@@ -1,0 +1,473 @@
+{
+    "regions": [
+        {
+            "id": 1,
+            "name": "Москва и область",
+            "fias_id": "0c5b2444-70a0-4932-980c-b4dc0d3f02b5",
+            "fias": [
+                {
+                    "id": 1,
+                    "name": "Москва",
+                    "fias_id": "0c5b2444-70a0-4932-980c-b4dc0d3f02b5",
+                    "type": "region",
+                    "stocks": []
+                },
+                {
+                    "id": 38,
+                    "name": "Московская обл",
+                    "fias_id": "29251dcf-00a1-4e34-98d4-5c47484a36d4",
+                    "type": "region"
+                }
+            ],
+            "default": true,
+            "in_loyalty": true
+        },
+        {
+            "id": 2,
+            "name": "Санкт-Петербург и область",
+            "fias_id": "c2deb16a-0330-4f05-821f-1d09c93331e6",
+            "fias": [
+                {
+                    "id": 2,
+                    "name": "Санкт-Петербург",
+                    "fias_id": "c2deb16a-0330-4f05-821f-1d09c93331e6",
+                    "type": "region"
+                },
+                {
+                    "id": 36,
+                    "name": "Ленинградская обл",
+                    "fias_id": "6d1ebb35-70c6-4129-bd55-da3969658f5d",
+                    "type": "region"
+                }
+            ],
+            "default": false,
+            "in_loyalty": true
+        },
+        {
+            "id": 25,
+            "name": "Алтайский край",
+            "fias_id": "8276c6a1-1a86-4f0d-8920-aba34d4cc34a",
+            "fias": [
+                {
+                    "id": 24,
+                    "name": "Алтайский",
+                    "fias_id": "8276c6a1-1a86-4f0d-8920-aba34d4cc34a",
+                    "type": "region"
+                }
+            ],
+            "default": false,
+            "in_loyalty": true
+        },
+        {
+            "id": 18,
+            "name": "Башкортостан",
+            "fias_id": "6f2cbfd8-692a-4ee4-9b16-067210bde3fc",
+            "fias": [
+                {
+                    "id": 17,
+                    "name": "Башкортостан",
+                    "fias_id": "6f2cbfd8-692a-4ee4-9b16-067210bde3fc",
+                    "type": "region"
+                }
+            ],
+            "default": false,
+            "in_loyalty": true
+        },
+        {
+            "id": 32,
+            "name": "Белгородская область",
+            "fias_id": "639efe9d-3fc8-4438-8e70-ec4f2321f2a7",
+            "fias": [
+                {
+                    "id": 31,
+                    "name": "Белгородская",
+                    "fias_id": "639efe9d-3fc8-4438-8e70-ec4f2321f2a7",
+                    "type": "region"
+                }
+            ],
+            "default": false,
+            "in_loyalty": true
+        },
+        {
+            "id": 27,
+            "name": "Владимирская область",
+            "fias_id": "b8837188-39ee-4ff9-bc91-fcc9ed451bb3",
+            "fias": [
+                {
+                    "id": 26,
+                    "name": "Владимирская",
+                    "fias_id": "b8837188-39ee-4ff9-bc91-fcc9ed451bb3",
+                    "type": "region"
+                }
+            ],
+            "default": false,
+            "in_loyalty": true
+        },
+        {
+            "id": 16,
+            "name": "Волгоградская область",
+            "fias_id": "da051ec8-da2e-4a66-b542-473b8d221ab4",
+            "fias": [
+                {
+                    "id": 15,
+                    "name": "Волгоградская",
+                    "fias_id": "da051ec8-da2e-4a66-b542-473b8d221ab4",
+                    "type": "region"
+                }
+            ],
+            "default": false,
+            "in_loyalty": true
+        },
+        {
+            "id": 34,
+            "name": "Вологодская область",
+            "fias_id": "ed36085a-b2f5-454f-b9a9-1c9a678ee618",
+            "fias": [
+                {
+                    "id": 33,
+                    "name": "Вологодская",
+                    "fias_id": "ed36085a-b2f5-454f-b9a9-1c9a678ee618",
+                    "type": "region"
+                }
+            ],
+            "default": false,
+            "in_loyalty": true
+        },
+        {
+            "id": 20,
+            "name": "Воронежская область",
+            "fias_id": "b756fe6b-bbd3-44d5-9302-5bfcc740f46e",
+            "fias": [
+                {
+                    "id": 19,
+                    "name": "Воронежская",
+                    "fias_id": "b756fe6b-bbd3-44d5-9302-5bfcc740f46e",
+                    "type": "region"
+                }
+            ],
+            "default": false,
+            "in_loyalty": true
+        },
+        {
+            "id": 29,
+            "name": "Ивановская область",
+            "fias_id": "0824434f-4098-4467-af72-d4f702fed335",
+            "fias": [
+                {
+                    "id": 28,
+                    "name": "Ивановская",
+                    "fias_id": "0824434f-4098-4467-af72-d4f702fed335",
+                    "type": "region"
+                }
+            ],
+            "default": false,
+            "in_loyalty": true
+        },
+        {
+            "id": 35,
+            "name": "Калужская область",
+            "fias_id": "18133adf-90c2-438e-88c4-62c41656de70",
+            "fias": [
+                {
+                    "id": 34,
+                    "name": "Калужская",
+                    "fias_id": "18133adf-90c2-438e-88c4-62c41656de70",
+                    "type": "region"
+                }
+            ],
+            "default": false,
+            "in_loyalty": true
+        },
+        {
+            "id": 33,
+            "name": "Костромская область",
+            "fias_id": "15784a67-8cea-425b-834a-6afe0e3ed61c",
+            "fias": [
+                {
+                    "id": 32,
+                    "name": "Костромская",
+                    "fias_id": "15784a67-8cea-425b-834a-6afe0e3ed61c",
+                    "type": "region"
+                }
+            ],
+            "default": false,
+            "in_loyalty": true
+        },
+        {
+            "id": 12,
+            "name": "Краснодарский край и Адыгея",
+            "fias_id": "d00e1013-16bd-4c09-b3d5-3cb09fc54bd8",
+            "fias": [
+                {
+                    "id": 11,
+                    "name": "Краснодарский",
+                    "fias_id": "d00e1013-16bd-4c09-b3d5-3cb09fc54bd8",
+                    "type": "region"
+                },
+                {
+                    "id": 40,
+                    "name": "Респ Адыгея",
+                    "fias_id": "d8327a56-80de-4df2-815c-4f6ab1224c50",
+                    "type": "region"
+                }
+            ],
+            "default": false,
+            "in_loyalty": true
+        },
+        {
+            "id": 28,
+            "name": "Липецкая область",
+            "fias_id": "1490490e-49c5-421c-9572-5673ba5d80c8",
+            "fias": [
+                {
+                    "id": 27,
+                    "name": "Липецкая",
+                    "fias_id": "1490490e-49c5-421c-9572-5673ba5d80c8",
+                    "type": "region"
+                }
+            ],
+            "default": false,
+            "in_loyalty": true
+        },
+        {
+            "id": 8,
+            "name": "Нижегородская область",
+            "fias_id": "88cd27e2-6a8a-4421-9718-719a28a0a088",
+            "fias": [
+                {
+                    "id": 7,
+                    "name": "Нижегородская",
+                    "fias_id": "88cd27e2-6a8a-4421-9718-719a28a0a088",
+                    "type": "region"
+                }
+            ],
+            "default": false,
+            "in_loyalty": true
+        },
+        {
+            "id": 11,
+            "name": "Новосибирская область",
+            "fias_id": "1ac46b49-3209-4814-b7bf-a509ea1aecd9",
+            "fias": [
+                {
+                    "id": 10,
+                    "name": "Новосибирская",
+                    "fias_id": "1ac46b49-3209-4814-b7bf-a509ea1aecd9",
+                    "type": "region"
+                }
+            ],
+            "default": false,
+            "in_loyalty": true
+        },
+        {
+            "id": 19,
+            "name": "Омская область",
+            "fias_id": "05426864-466d-41a3-82c4-11e61cdc98ce",
+            "fias": [
+                {
+                    "id": 18,
+                    "name": "Омская",
+                    "fias_id": "05426864-466d-41a3-82c4-11e61cdc98ce",
+                    "type": "region"
+                }
+            ],
+            "default": false,
+            "in_loyalty": true
+        },
+        {
+            "id": 31,
+            "name": "Пермский край",
+            "fias_id": "4f8b1a21-e4bb-422f-9087-d3cbf4bebc14",
+            "fias": [
+                {
+                    "id": 30,
+                    "name": "Пермский",
+                    "fias_id": "4f8b1a21-e4bb-422f-9087-d3cbf4bebc14",
+                    "type": "region"
+                }
+            ],
+            "default": false,
+            "in_loyalty": true
+        },
+        {
+            "id": 6,
+            "name": "Ростовская область",
+            "fias_id": "f10763dc-63e3-48db-83e1-9c566fe3092b",
+            "fias": [
+                {
+                    "id": 5,
+                    "name": "Ростовская",
+                    "fias_id": "f10763dc-63e3-48db-83e1-9c566fe3092b",
+                    "type": "region"
+                }
+            ],
+            "default": false,
+            "in_loyalty": true
+        },
+        {
+            "id": 22,
+            "name": "Рязанская область",
+            "fias_id": "963073ee-4dfc-48bd-9a70-d2dfc6bd1f31",
+            "fias": [
+                {
+                    "id": 21,
+                    "name": "Рязанская",
+                    "fias_id": "963073ee-4dfc-48bd-9a70-d2dfc6bd1f31",
+                    "type": "region"
+                }
+            ],
+            "default": false,
+            "in_loyalty": true
+        },
+        {
+            "id": 7,
+            "name": "Самарская область",
+            "fias_id": "df3d7359-afa9-4aaa-8ff9-197e73906b1c",
+            "fias": [
+                {
+                    "id": 6,
+                    "name": "Самарская",
+                    "fias_id": "df3d7359-afa9-4aaa-8ff9-197e73906b1c",
+                    "type": "region"
+                }
+            ],
+            "default": false,
+            "in_loyalty": true
+        },
+        {
+            "id": 21,
+            "name": "Саратовская область",
+            "fias_id": "df594e0e-a935-4664-9d26-0bae13f904fe",
+            "fias": [
+                {
+                    "id": 20,
+                    "name": "Саратовская",
+                    "fias_id": "df594e0e-a935-4664-9d26-0bae13f904fe",
+                    "type": "region"
+                }
+            ],
+            "default": false,
+            "in_loyalty": true
+        },
+        {
+            "id": 10,
+            "name": "Свердловская область",
+            "fias_id": "92b30014-4d52-4e2e-892d-928142b924bf",
+            "fias": [
+                {
+                    "id": 9,
+                    "name": "Свердловская",
+                    "fias_id": "92b30014-4d52-4e2e-892d-928142b924bf",
+                    "type": "region"
+                }
+            ],
+            "default": false,
+            "in_loyalty": true
+        },
+        {
+            "id": 26,
+            "name": "Тамбовская область",
+            "fias_id": "a9a71961-9363-44ba-91b5-ddf0463aebc2",
+            "fias": [
+                {
+                    "id": 25,
+                    "name": "Тамбовская",
+                    "fias_id": "a9a71961-9363-44ba-91b5-ddf0463aebc2",
+                    "type": "region"
+                }
+            ],
+            "default": false,
+            "in_loyalty": true
+        },
+        {
+            "id": 14,
+            "name": "Татарстан",
+            "fias_id": "0c089b04-099e-4e0e-955a-6bf1ce525f1a",
+            "fias": [
+                {
+                    "id": 13,
+                    "name": "Татарстан",
+                    "fias_id": "0c089b04-099e-4e0e-955a-6bf1ce525f1a",
+                    "type": "region"
+                }
+            ],
+            "default": false,
+            "in_loyalty": true
+        },
+        {
+            "id": 17,
+            "name": "Тюменская область",
+            "fias_id": "54049357-326d-4b8f-b224-3c6dc25d6dd3",
+            "fias": [
+                {
+                    "id": 16,
+                    "name": "Тюменская",
+                    "fias_id": "54049357-326d-4b8f-b224-3c6dc25d6dd3",
+                    "type": "region"
+                }
+            ],
+            "default": false,
+            "in_loyalty": true
+        },
+        {
+            "id": 23,
+            "name": "Удмуртия",
+            "fias_id": "52618b9c-bcbb-47e7-8957-95c63f0b17cc",
+            "fias": [
+                {
+                    "id": 22,
+                    "name": "Удмуртская",
+                    "fias_id": "52618b9c-bcbb-47e7-8957-95c63f0b17cc",
+                    "type": "region"
+                }
+            ],
+            "default": false,
+            "in_loyalty": true
+        },
+        {
+            "id": 24,
+            "name": "Ульяновская область",
+            "fias_id": "fee76045-fe22-43a4-ad58-ad99e903bd58",
+            "fias": [
+                {
+                    "id": 23,
+                    "name": "Ульяновская",
+                    "fias_id": "fee76045-fe22-43a4-ad58-ad99e903bd58",
+                    "type": "region"
+                }
+            ],
+            "default": false,
+            "in_loyalty": true
+        },
+        {
+            "id": 15,
+            "name": "Челябинская область",
+            "fias_id": "27eb7c10-a234-44da-a59c-8b1f864966de",
+            "fias": [
+                {
+                    "id": 14,
+                    "name": "Челябинская",
+                    "fias_id": "27eb7c10-a234-44da-a59c-8b1f864966de",
+                    "type": "region"
+                }
+            ],
+            "default": false,
+            "in_loyalty": true
+        },
+        {
+            "id": 30,
+            "name": "Ярославская область",
+            "fias_id": "a84b2ef4-db03-474b-b552-6229e801ae9b",
+            "fias": [
+                {
+                    "id": 29,
+                    "name": "Ярославская",
+                    "fias_id": "a84b2ef4-db03-474b-b552-6229e801ae9b",
+                    "type": "region"
+                }
+            ],
+            "default": false,
+            "in_loyalty": true
+        }
+    ]
+}
