@@ -2,6 +2,9 @@ import re
 
 import requests
 from bs4 import BeautifulSoup
+from fake_useragent import UserAgent
+
+ua = UserAgent()
 
 pattern = r"(\d+([.,]\d+)?)\s?(г|кг|л|мл|gr|kg|ml)\b"
 exclude_brands = ["Global Village", "Красная цена"]
@@ -10,7 +13,7 @@ exclude_brands = ["Global Village", "Красная цена"]
 def parse_products_magnit(shop_code='963529', max_pages=50):
     base_url = "https://magnit.ru/catalog"
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36',
+        'User-Agent': ua.random,
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
     }
     cookies = {'shopCode': shop_code}
@@ -73,7 +76,7 @@ def parse_products_magnit(shop_code='963529', max_pages=50):
 def parse_product_lenta():
     base_url = "https://lenta.com/api-gateway/v1/catalog/items"
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+        "User-Agent": ua.random,
         "Accept": "application/json, text/plain, */*",
         "Origin": "https://lenta.com",
 
@@ -89,7 +92,7 @@ def parse_category():
         "include_restrict": "true"
     }
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+        "User-Agent": ua.random,
         "Accept": "application/json, text/plain, */*",
         "Origin": "https://5ka.ru",
         "X-App-Version": "tc5-v250312-31214353",
@@ -127,7 +130,7 @@ def parse_category():
 def parse_products_list(category_id: str):
     url = f"https://5d.5ka.ru/api/catalog/v2/stores/35V7/categories/{category_id}/products"
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+        "User-Agent": ua.random,
         "Accept": "application/json, text/plain, */*",
         "Origin": "https://5ka.ru",
         "X-App-Version": "tc5-v250312-31214353",
@@ -173,7 +176,7 @@ def parse_products_list(category_id: str):
 def parse_product_info(product_id: str):
     url = f"https://5d.5ka.ru/api/catalog/v2/stores/35V7/products/{product_id}"
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+        "User-Agent": ua.random,
         "Accept": "application/json, text/plain, */*",
         "Origin": "https://5ka.ru",
         "X-App-Version": "tc5-v250312-31214353",
@@ -199,7 +202,7 @@ def parse_product_info(product_id: str):
 def parse_product_subcategories(category_id: str):
     url = f'https://5d.5ka.ru/api/catalog/v2/stores/35V7/categories/{category_id}/extended'
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+        "User-Agent": ua.random,
         "Accept": "application/json, text/plain, */*",
         "Origin": "https://5ka.ru",
         "X-App-Version": "tc5-v250312-31214353",
@@ -231,7 +234,7 @@ def parse_product_subcategories(category_id: str):
 def search_products(search_term: str):
     url = f'https://5d.5ka.ru/api/catalog/v3/stores/35V7/search'
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+        "User-Agent": ua.random,
         "Accept": "application/json, text/plain, */*",
         "Origin": "https://5ka.ru",
         "X-App-Version": "tc5-v250312-31214353",
