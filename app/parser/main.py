@@ -1,6 +1,6 @@
 from multiprocessing.pool import ThreadPool
 
-from config import Config
+from parser.config import Config
 from app.db.database import Db, create_engine_from_config
 from store.ashan import AshanParser
 from store.magnit import MagnitParser

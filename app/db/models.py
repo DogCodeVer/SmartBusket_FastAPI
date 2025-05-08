@@ -1,8 +1,11 @@
+from pathlib import Path
+
 from sqlalchemy import Column, Integer, String, Float, ForeignKey, Text
 from sqlalchemy.orm import relationship
 
-from app.db.database import Base
+import sys
 
+from .database import Base
 
 class Store(Base):
     __tablename__ = 'store'
