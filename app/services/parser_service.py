@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 
 pattern = r"(\d+([.,]\d+)?)\s?(г|кг|л|мл|gr|kg|ml)\b"
 exclude_brands = ["Global Village", "Красная цена"]
+filtered_categories = []
 
 
 def parse_products_magnit(shop_code='963529', max_pages=50):
@@ -149,6 +150,7 @@ def parse_products_list(category_id: str):
         }
 
         response = requests.get(url, headers=headers, params=params)
+        print(response.status_code)
 
         if response.status_code == 200:
             data = response.json()
@@ -251,6 +253,7 @@ def search_products(search_term: str):
     }
 
     response = requests.get(url, headers=headers, params=params)
+    print(response.text)
 
     if response.status_code == 200:
         data = response.json()
